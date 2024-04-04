@@ -3,7 +3,7 @@ import SectionTitle from '../Shared/SectionTitle/SectionTitle';
 
 const FeaturedMenu = () => {
     return (
-        <div style={{backgroundImage:`url(${img2})`}} className='bg-cover  mt-10 mb-20'>
+        <div style={{backgroundImage:`url(${img2})`}} className='bg-cover  mt-10 mb-20 bg-fixed'>
             <div className='bg-[#1a1a1ab3] bg-cover py-20 mt-10'>
             <div className='text-white'>
                 <SectionTitle heading={'From Our Menu'} subHeading={'Check it out'}></SectionTitle>
