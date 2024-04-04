@@ -12,7 +12,6 @@ const Menu = () => {
             <div className='min-h-screen'>
                 <CoverPage img={bannerImg} heading={'Our Menu'} subHeading={'would you like to try a dish?'}></CoverPage>
                 <div className='py-20'>
-                    
                     <Popular></Popular>
                 </div>
                 <CoverPage img={bannerImg} heading={'Our Menu'} subHeading={'would you like to try a dish?'}></CoverPage>
