@@ -1,7 +1,11 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import useMenu from '../../Hooks/useMenu';
+import ItemCard from './ItemCard';
+import TabItem from './TabItem';
 
 const MenuTabs = () => {
+    
     return (
         <div>
             <Tabs>
@@ -14,19 +18,22 @@ const MenuTabs = () => {
                 </TabList>
 
                 <TabPanel>
-                    <h2>Any content 1</h2>
+                    <TabItem menuItem={'salad'}></TabItem>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 2</h2>
+                <TabItem menuItem={'pizza'}></TabItem>
+
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 2</h2>
+                <TabItem menuItem={'soup'}></TabItem>
+
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 2</h2>
+                <TabItem menuItem={'dessert'}></TabItem>
+
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 2</h2>
+                <TabItem menuItem={'drinks'}></TabItem>
                 </TabPanel>
             </Tabs>
         </div>
