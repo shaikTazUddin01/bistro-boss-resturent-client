@@ -20,7 +20,7 @@ const MenuTabs = () => {
     // setTabIndex(selectedItem)
     return (
         <div>
-            <Tabs selectedIndex={tabIndex}>
+            <Tabs defaultIndex={tabIndex}>
                 <TabList  className={"uppercase"}>
                     <Tab>salad</Tab>
                     <Tab>pizza</Tab>
