@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
-    const navItem=<>
-    <li><NavLink to={'/'}>Home</NavLink></li>
-    <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
-    <li><NavLink to={'/dashboard'}>DashBoard</NavLink></li>
-    <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
-    <li><NavLink to={'/shop/salad'}>Our Shop</NavLink></li>
-    <li><NavLink to={'/login'}>Log In</NavLink></li>
+    const { user, logout } = useContext(AuthContext)
+    // console.log(user)
+    const handleLogOut = () => {
+        logout()
+        .then(res=>{
+            alert("logout")
+        }).catch(err=>{
+            alert(err.messages)
+        })
+    }
+
+    const navItem = <>
+        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
+        <li><NavLink to={'/dashboard'}>DashBoard</NavLink></li>
+        <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
+        <li><NavLink to={'/shop/salad'}>Our Shop</NavLink></li>
+        {
+            user ?
+                <li><a href=""  onClick={handleLogOut}>Log Out</a></li>
+                :
+                <li><NavLink to={'/login'}>Log In</NavLink></li>
+        }
     </>
     return (
         <div className=''>
