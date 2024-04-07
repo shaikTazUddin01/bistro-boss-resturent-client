@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
-
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
+    const { login } = useContext(AuthContext);
+
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -10,7 +15,14 @@ const LoginPage = () => {
 
 
     const onSubmit = (data) => {
-        console.log(data)
+
+        login(data?.email, data?.password)
+            .then(res => {
+                alert("login")
+                navigate("/")
+            }).catch(err => {
+                alert(err.messages)
+            })
 
     }
 
