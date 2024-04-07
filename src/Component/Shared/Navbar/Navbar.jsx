@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
+// sweet alert
+import Swal from 'sweetalert2'
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext)
     // console.log(user)
     const handleLogOut = () => {
         logout()
-        .then(res=>{
-            alert("logout")
+        .then(() => {
+            Swal.fire("Logout", "You have been logged out", "success");
+            alert('logout')
         }).catch(err=>{
             alert(err.messages)
         })

@@ -43,7 +43,8 @@ const logout=()=>{
         loading,
         createUser,
         login,
-        logout
+        logout,
+        auth
     }
     return (
     <AuthContext.Provider value={authInfo}>

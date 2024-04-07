@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 const LoginPage = () => {
     const { login } = useContext(AuthContext);
 
@@ -18,7 +19,13 @@ const LoginPage = () => {
 
         login(data?.email, data?.password)
             .then(res => {
-                alert("login")
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Log in success",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 navigate("/")
             }).catch(err => {
                 alert(err.messages)
