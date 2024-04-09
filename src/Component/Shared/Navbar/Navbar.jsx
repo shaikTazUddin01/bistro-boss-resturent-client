@@ -3,29 +3,36 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 // sweet alert
 import Swal from 'sweetalert2'
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext)
     // console.log(user)
     const handleLogOut = () => {
         logout()
-        .then(() => {
-            Swal.fire("Logout", "You have been logged out", "success");
-            alert('logout')
-        }).catch(err=>{
-            alert(err.messages)
-        })
+            .then(() => {
+                Swal.fire("Logout", "You have been logged out", "success");
+                alert('logout')
+            }).catch(err => {
+                alert(err.messages)
+            })
     }
 
     const navItem = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
-        <li><NavLink to={'/dashboard'}>DashBoard</NavLink></li>
         <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
         <li><NavLink to={'/shop/salad'}>Our Shop</NavLink></li>
+        <li><NavLink to={'/cart'}>     
+        <button className='flex'>
+           <div className='text-2xl'>
+           <AiOutlineShoppingCart></AiOutlineShoppingCart>
+           </div>
+            <sup className="badge badge-secondary">+99</sup>
+        </button>
+            </NavLink></li>
         {
             user ?
-                <li><a href=""  onClick={handleLogOut}>Log Out</a></li>
+                <li><a href="" onClick={handleLogOut}>Log Out</a></li>
                 :
                 <li><NavLink to={'/login'}>Log In</NavLink></li>
         }

@@ -16,22 +16,22 @@ const AuthProvider = ({ children }) => {
     }
 // login user
 const login=(email,password)=>{
-    setLoading(true)
+    setLoading(false)
    return signInWithEmailAndPassword(auth,email,password)
 }
 // log out user
 
 const logout=()=>{
-    setLoading(true)
-   return signOut(auth)
+    setLoading(false)
+    return signOut(auth)
 }
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser) {
+            
                 setUser(currentUser);
                 console.log("user:",currentUser)
                 setLoading(false)
-            }
+            
         })
         return () => {
             return unSubscribe()

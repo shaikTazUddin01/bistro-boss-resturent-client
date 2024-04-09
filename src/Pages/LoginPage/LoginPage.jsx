@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Swal from 'sweetalert2'
 const LoginPage = () => {
     const { login } = useContext(AuthContext);
-
+    const location=useLocation()
+    console.log(location)
     const navigate = useNavigate()
     const {
         register,
@@ -26,7 +27,11 @@ const LoginPage = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
-                navigate("/")
+                  if(location?.state){
+                      navigate(location.state)
+                  }else{
+                    navigate('/')
+                  }
             }).catch(err => {
                 alert(err.messages)
             })
