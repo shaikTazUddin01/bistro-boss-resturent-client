@@ -4,8 +4,12 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 // sweet alert
 import Swal from 'sweetalert2'
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import useCart from '../../../Hooks/useCart';
 
 const Navbar = () => {
+    //cart
+    const [cart]=useCart()
+    console.log(cart)
     const { user, logout } = useContext(AuthContext)
     // console.log(user)
     const handleLogOut = () => {
@@ -27,7 +31,7 @@ const Navbar = () => {
            <div className='text-2xl'>
            <AiOutlineShoppingCart></AiOutlineShoppingCart>
            </div>
-            <sup className="badge badge-secondary">+99</sup>
+            <sup className="badge badge-secondary">{cart?.length}</sup>
         </button>
             </NavLink></li>
         {

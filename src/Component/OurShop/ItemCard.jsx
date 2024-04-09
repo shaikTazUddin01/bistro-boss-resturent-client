@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useCart from '../../Hooks/useCart';
 const ItemCard = ({ item }) => {
+    const [, refetch] = useCart()
     const axiosSecure = useAxiosSecure()
     const { image, recipe, name } = item
     const { user } = useAuth()
@@ -24,16 +26,17 @@ const ItemCard = ({ item }) => {
 
             axiosSecure.post('/addtocart', cartInFo)
                 .then(res => {
-                    if(res.data.insertedId){
+                    if (res.data.insertedId) {
                         Swal.fire({
                             position: "center",
                             icon: "success",
                             title: `${item?.name} add to the cart`,
                             showConfirmButton: false,
                             timer: 1500
-                          });
+                        });
                     }
-                    
+                    refetch()
+
                 }).catch(err => {
                     Swal.fire({
                         position: "center",
@@ -41,7 +44,7 @@ const ItemCard = ({ item }) => {
                         title: `${err?.messages}`,
                         showConfirmButton: false,
                         timer: 1500
-                      });
+                    });
                 })
 
         } else {
