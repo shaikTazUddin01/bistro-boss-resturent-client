@@ -4,7 +4,9 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const Signup = () => {
+    const axiosPublic=useAxiosPublic()
     const {auth,createUser}=useContext(AuthContext)
     const navigate=useNavigate()
     const {
@@ -24,14 +26,30 @@ const Signup = () => {
                 displayName: data?.name
               })
               .then(()=>{
-                  Swal.fire({
-                      position: "center",
-                      icon: "success",
-                      title: "sign up success",
-                      showConfirmButton: false,
-                      timer: 1500
-                    });
-                    navigate('/')
+                      const userInfo={
+                        email:data?.email,
+                        name:data?.name
+                      }
+                      axiosPublic.post('/user',userInfo)
+                      .then(res=>{
+                          Swal.fire({
+                              position: "center",
+                              icon: "success",
+                              title: "sign up success",
+                              showConfirmButton: false,
+                              timer: 1500
+                            });
+                            navigate('/')
+                      })
+                      .catch(error=>{
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: error.messages,
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                      })
               })
               .catch(error=>{
                 Swal.fire({
