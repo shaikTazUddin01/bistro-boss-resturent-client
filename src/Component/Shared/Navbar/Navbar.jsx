@@ -26,7 +26,7 @@ const Navbar = () => {
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
         <li><NavLink to={'/shop/salad'}>Our Shop</NavLink></li>
-        <li><NavLink to={'/cart'}>     
+        <li><NavLink to={'dashboard/cart'}>     
         <button className='flex'>
            <div className='text-2xl'>
            <AiOutlineShoppingCart></AiOutlineShoppingCart>

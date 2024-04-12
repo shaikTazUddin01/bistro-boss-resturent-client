@@ -7,7 +7,9 @@ import OurShop from '../Pages/OurShop/OurShop';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import Signup from '../Pages/Signup/SignUP';
 import PrivateRoute from './PrivateRoute';
-import Secrate from '../Pages/Secrate/Secrate';
+import DashBoard from '../Layout/DashBoard';
+import { CgArrowDown } from 'react-icons/cg';
+import Cart from '../Pages/Dashboard/Cart';
 
 const Routes = createBrowserRouter([
     {
@@ -38,6 +40,17 @@ const Routes = createBrowserRouter([
             //     path:'/secter',
             //     element:<PrivateRoute><Secrate></Secrate></PrivateRoute>
             // }
+        ]
+    },
+    {
+        path:'dashboard',
+        element:<DashBoard></DashBoard>,
+        children:[
+            {
+                path:'cart',
+                element:<Cart></Cart>
+                
+            }
         ]
     }
 ])
