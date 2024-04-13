@@ -28,7 +28,7 @@ const SocialLogin = () => {
                 }
                 axiosPublic.post(`/user?email=${email}`, userInfo)
                 .then(res=>{
-                    console.log(res)
+                    // console.log(res)
                 })
                 Swal.fire({
                     position: "center",
