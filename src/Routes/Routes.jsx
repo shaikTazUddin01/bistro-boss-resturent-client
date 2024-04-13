@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import DashBoard from '../Layout/DashBoard';
 import { CgArrowDown } from 'react-icons/cg';
 import Cart from '../Pages/Dashboard/Cart';
+import AllUser from '../Pages/Dashboard/AllUser';
 
 const Routes = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const Routes = createBrowserRouter([
                 path:'cart',
                 element:<PrivateRoute><Cart></Cart></PrivateRoute>
                 
+            },
+            {
+                path:'allUser',
+                element:<AllUser></AllUser>
             }
         ]
     }
