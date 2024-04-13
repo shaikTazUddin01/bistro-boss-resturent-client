@@ -1,15 +1,55 @@
 
 import useAllUser from '../../Hooks/useAllUser';
 import SectionTitle from '../../Component/Shared/SectionTitle/SectionTitle'
-import { MdDelete } from 'react-icons/md';
+import { MdAdminPanelSettings, MdDelete } from 'react-icons/md';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { FaUsers } from 'react-icons/fa';
 const AllUser = () => {
     const axiosSecure = useAxiosSecure()
     const [users, isPending ,refetch] = useAllUser()
     if (isPending) {
         return <p>Loading...</p>
     }
+
+    // update user role
+
+    const handleUpdateUser=(id)=>{
+        
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, update it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/user/admin/${id}`)
+                    .then(res => {
+                        // console.log(res.data)
+                        if (res?.data?.modifiedCount) {
+                            Swal.fire({
+                                title: "update!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            refetch()
+                        }
+                    })
+                    .catch(err => {
+                        Swal.fire({
+
+                            text: "something is wrong please try again",
+                            icon: "error"
+                        });
+                    })
+            }
+        });
+    }
+
+    // delete user
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -73,7 +113,15 @@ const AllUser = () => {
                                     <td>{index + 1}</td>
                                     <td>{item?.name}</td>
                                     <td>{item?.email}</td>
-                                    <td>admin</td>
+                                    <td>
+                                        {
+                                            item?.role==="admin"?
+                                            <button className='btn btn-success'><MdAdminPanelSettings></MdAdminPanelSettings></button>
+                                            :
+                                            <button className='btn btn-success' onClick={()=>handleUpdateUser(item?._id)}><FaUsers></FaUsers></button>
+                                        }
+                                        
+                                    </td>
                                     <td className=''>
                                         <button className='bg-red-600 p-3 rounded-md text-white text-xl' onClick={() => handleDelete(item?._id)}><MdDelete></MdDelete></button>
                                     </td>
