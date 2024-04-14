@@ -7,7 +7,7 @@ const axiosSecure = axios.create({
 })
 const useAxiosSecure = () => {
     const navigate = useNavigate()
-    const {logout}=useAuth()
+    const { logout } = useAuth()
     axiosSecure.interceptors.request.use((config) => {
         const token = localStorage.getItem('access-token')
         // console.log("request stop by interseptor", token)
@@ -22,7 +22,7 @@ const useAxiosSecure = () => {
         // Any status code that lie within the range of 2xx cause this function to trigger
         // Do something with response data
         return response;
-    }, async (error) =>{
+    }, async (error) => {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         // Do something with response error
         const status = error?.response?.status

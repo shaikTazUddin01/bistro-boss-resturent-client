@@ -11,6 +11,7 @@ import DashBoard from '../Layout/DashBoard';
 import { CgArrowDown } from 'react-icons/cg';
 import Cart from '../Pages/Dashboard/Cart';
 import AllUser from '../Pages/Dashboard/AllUser';
+import AdminRoute from './AdminRoute';
 
 const Routes = createBrowserRouter([
     {
@@ -54,7 +55,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path:'allUser',
-                element:<AllUser></AllUser>
+                element:<AdminRoute><AllUser></AllUser></AdminRoute>
             }
         ]
     }
