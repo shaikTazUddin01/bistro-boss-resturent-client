@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import useCart from '../Hooks/useCart';
 import { FaCartPlus, FaDAndD, FaHome, FaSitemap, FaUser } from 'react-icons/fa';
 import { Fa42Group, FaManatSign, FaMarsAndVenus, FaShop } from 'react-icons/fa6';
+import useAdmin from '../Hooks/useAdmin';
 const DashBoard = () => {
     const [activeRoute, setActiveRoute] = useState("");
     const [cart] = useCart()
@@ -12,13 +13,16 @@ const DashBoard = () => {
     const pathNameParts = location.pathname.split('/')
     const lastPart = pathNameParts[pathNameParts.length - 1]
     // console.log(lastPart)
-
-    const isAdmin = true
-
+    const [isAdmin,isPending] = useAdmin()
+    console.log("admin", isAdmin)
+    // const isAdmin=true
     useEffect(() => {
         setActiveRoute(lastPart)
 
     }, [lastPart])
+    if(isPending){
+        return <p>loading....</p>
+    }
     return (
         <div className='flex gap-10'>
             <div className='bg-yellow-600 min-h-screen w-[20%]'>
